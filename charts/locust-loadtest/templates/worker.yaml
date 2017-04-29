@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}-master
+  name: {{ template "fullname" . }}-worker
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     name: locust
-    role: master
+    role: worker
 spec:
-  replicas: 1
+  replicas: {{ .Values.workerCount }}
   template:
     metadata:
       labels:
@@ -63,19 +63,9 @@ spec:
         # Mount the git repo for the system under test
         - mountPath: /sut
           name: git-volume
-        ports:
-        - name: loc-master-web
-          containerPort: 8089
-          protocol: TCP
-        - name: loc-master-p1
-          containerPort: 5557
-          protocol: TCP
-        - name: loc-master-p2
-          containerPort: 5558
-          protocol: TCP
         env:
         - name: LOCUST_MODE
-          value: master
+          value: worker
         - name: LOCUST_MASTER
           value: {{ template "fullname" . }}
         - name: TARGET_HOST
