@@ -30,7 +30,7 @@ task:
 
 workerCount: 1
 image:
-  repository: quay.io/leopoldodonnell/locust-tasks
+  repository: quay.io/leopoldodonnell/locust-loadtest
   tag: latest
   gitSync: gcr.io/google-containers/git-sync:v2.0.4
   pullPolicy: Always

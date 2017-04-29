@@ -1,4 +1,8 @@
 # WIP k8s-loadtest
+[![Docker Repository on Quay](https://quay.io/repository/leopoldodonnell/gantry/status "Docker Repository on Quay")](https://quay.io/repository/leopoldodonnell/locust-loadtest)
+
+<p align='center'><img align="center" src="load-test.jpg" width="50%" height="50%"></p>
+
 A simple load testing framework for Kubernetes workloads using locust
 
 ## Quickstart
