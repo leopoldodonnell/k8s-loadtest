@@ -1,0 +1,48 @@
+# Default values for locust-loadtest.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+sshSecret: git-creds
+
+# Locust will be directed to the System Under Test (sut) determined
+# by the value of `task.targetHost` found in subdirectory of the
+# sut's git repository within `taskDir`.
+#
+# Setup the System Under Test:
+#  targetHost: the URI endpoint that will be targeted by locust
+#  taskDir: the relative subdirectory in the git repository where
+#            the 'tasks.py' locust task entrypoint is found
+# 
+# Setup the git repository:
+#  repo: is the ssh URI that you would specify in your git command
+#  dest: is the directory where the project will be found. You would
+#        typically set it to the name of the repository
+#  branch: the git branch to 'checkout'
+#  refresh: how often to refresh the files from git
+
+task:
+  targetHost: http://sample-app
+  taskDir: locust_tasks
+  repo: git@github.com:kubernetes/git-sync.git 
+  dest: task-repo
+  branch: master
+  refresh: 30
+
+workerCount: 1
+image:
+  repository: quay.io/leopoldodonnell/locust-tasks
+  tag: latest
+  gitSync: gcr.io/google-containers/git-sync:v2.0.4
+  pullPolicy: Always
+service:
+  name: locust
+  type: NodePort
+  
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
