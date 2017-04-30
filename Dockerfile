@@ -10,5 +10,6 @@ RUN pip install locustio==v0.8a1 && \
 # Expose the required Locust ports
 EXPOSE 5557 5558 8089
 
+ADD run.sh /usr/local/bin/locust.sh
 # Start Locust using LOCUS_OPTS environment variable
-ENTRYPOINT ["/locust-tasks/run.sh"] 
+ENTRYPOINT ["/usr/local/bin/locust.sh"] 
