@@ -12,6 +12,7 @@ sshSecret: git-creds
 #  targetHost: the URI endpoint that will be targeted by locust
 #  taskDir: the relative subdirectory in the git repository where
 #            the 'tasks.py' locust task entrypoint is found
+#  tasks: the python file relative to taskDir with the tasks to run
 # 
 # Setup the git repository:
 #  repo: is the ssh URI that you would specify in your git command
@@ -22,13 +23,14 @@ sshSecret: git-creds
 
 task:
   targetHost: http://sample-app
-  taskDir: locust_tasks
+  taskDir: locust-tasks
+  tasks: tasks.py
   repo: git@github.com:kubernetes/git-sync.git 
   dest: task-repo
   branch: master
   refresh: 30
 
-workerCount: 1
+workerCount: 2
 image:
   repository: quay.io/leopoldodonnell/locust-loadtest
   tag: latest
