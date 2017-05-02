@@ -12,7 +12,7 @@ spec:
     metadata:
       labels:
         app: {{ template "fullname" . }}
-        name: locust
+        name: {{ template "fullname" . }}-master
         role: master
     spec:
       volumes:
@@ -24,6 +24,7 @@ spec:
         emptyDir: {}
 
       initContainers:
+      # Fix the ssh secrets permissions
       - name: fix-perms
         image: busybox
         command:
@@ -37,7 +38,7 @@ spec:
         securityContext:
           runAsUser: 0
 
-      containers:
+      # Go get the tasks from git
       - name: tasks
         image: {{ .Values.image.gitSync }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -46,7 +47,7 @@ spec:
           "--dest", "{{ .Values.task.dest }}",
           "--branch", "{{ .Values.task.branch }}",
           "--ssh",
-          "--wait", "{{ .Values.task.refresh }}"
+          "--one-time"
         ]
         volumeMounts:
         - mountPath: /git/
@@ -56,13 +57,21 @@ spec:
           subPath: ssh
         securityContext:
           runAsUser: 0
+
+      containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command:
+          - /bin/sh
+          - -c
+          - "/bin/ls -lR /{{ .Values.task.dest }}/{{ .Values.task.taskDir }}/. && /usr/local/bin/locust.sh"
+        workingDir: /{{ .Values.task.dest }}/{{ .Values.task.taskDir }}
         volumeMounts:
         # Mount the git repo for the system under test
-        - mountPath: /sut
+        - mountPath: /{{ .Values.task.dest }}/{{ .Values.task.taskDir }}
           name: git-volume
+          subPath: {{ .Values.task.dest }}/{{ .Values.task.taskDir }}
         ports:
         - name: loc-master-web
           containerPort: 8089
@@ -81,7 +90,7 @@ spec:
         - name: TARGET_HOST
           value: {{ .Values.task.targetHost }}
         - name: LOCUST_TASKS
-          value: /sut/{{ .Values.task.dest }}/{{ .Values.task.taskDir }}
+          value: /{{ .Values.task.dest }}/{{ .Values.task.taskDir }}/{{ .Values.task.tasks }}
         # livenessProbe:
         #   httpGet:
         #     path: /

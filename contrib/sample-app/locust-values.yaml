@@ -1,7 +1,7 @@
-workerCount: 5
+workerCount: 2
 
 task:
   targetHost: http://sample-app
-  taskDir: contrib/sample-app/locust_tasks
+  taskDir: contrib/sample-app/locust-tasks
   repo: git@github.com:leopoldodonnell/k8s-loadtest.git
 
