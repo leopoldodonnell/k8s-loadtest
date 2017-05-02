@@ -1,0 +1,1613 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-master-prgsb",
+                "generateName": "locust-master-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-master-prgsb",
+                "uid": "f87c9e88-1b98-11e7-968b-1278d835e798",
+                "resourceVersion": "166068",
+                "creationTimestamp": "2017-04-07T13:49:07Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "master"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-master\",\"uid\":\"f87b0f49-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"165656\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-master",
+                        "uid": "f87b0f49-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "gcr.io/cloud-solutions-images/locust-tasks:latest",
+                        "ports": [
+                            {
+                                "name": "loc-master-web",
+                                "containerPort": 8089,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "name": "loc-master-p1",
+                                "containerPort": 5557,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "name": "loc-master-p2",
+                                "containerPort": 5558,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-122.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:49:07Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:50:08Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:49:07Z"
+                    }
+                ],
+                "hostIP": "192.168.213.122",
+                "podIP": "10.2.8.197",
+                "startTime": "2017-04-07T13:49:07Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:50:07Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "gcr.io/cloud-solutions-images/locust-tasks:latest",
+                        "imageID": "docker://sha256:26fa022c41367b15005c7d0e982e4b78691cb049725b72af9686fe6997a2212b",
+                        "containerID": "docker://3184e3a70dcfd106ac9d2fafbcb4624647c32aaaf318896a5747fc7275ad7868"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-31rkt",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-31rkt",
+                "uid": "f8d17ca7-1b99-11e7-968b-1278d835e798",
+                "resourceVersion": "167814",
+                "creationTimestamp": "2017-04-07T13:56:17Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167491\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-45.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:17Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:13Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:17Z"
+                    }
+                ],
+                "hostIP": "192.168.213.45",
+                "podIP": "10.2.220.200",
+                "startTime": "2017-04-07T13:56:17Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:57:12Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://3de86a077ea2bc67d5baaf458348ba3207e8ca2a6bf07d4c4520a06920535b68"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-6n0hx",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-6n0hx",
+                "uid": "11397b51-1b9a-11e7-968b-1278d835e798",
+                "resourceVersion": "167763",
+                "creationTimestamp": "2017-04-07T13:56:58Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167728\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-72.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:58Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:02Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:58Z"
+                    }
+                ],
+                "hostIP": "192.168.213.72",
+                "podIP": "10.2.230.141",
+                "startTime": "2017-04-07T13:56:58Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:57:01Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://dfcd99fb3135d3699da798b042e6b63cf07d53588e53970b36cb5d44e3c51275"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-751j2",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-751j2",
+                "uid": "fc90d8dd-1b98-11e7-968b-1278d835e798",
+                "resourceVersion": "167702",
+                "creationTimestamp": "2017-04-07T13:49:14Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"165680\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-122.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:49:14Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:54Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:49:14Z"
+                    }
+                ],
+                "hostIP": "192.168.213.122",
+                "podIP": "10.2.8.200",
+                "startTime": "2017-04-07T13:49:14Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:56:54Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://bfaa723b8fc4ad7c33706cf8b13fc165a8f97bad71136a39c1dcd3e91a49da1e"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-7mbml",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-7mbml",
+                "uid": "02f13c04-1b9a-11e7-968b-1278d835e798",
+                "resourceVersion": "167717",
+                "creationTimestamp": "2017-04-07T13:56:34Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167564\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-122.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:34Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:55Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:34Z"
+                    }
+                ],
+                "hostIP": "192.168.213.122",
+                "podIP": "10.2.8.202",
+                "startTime": "2017-04-07T13:56:34Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:56:55Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://b1648188fe63c732142c330bb22ac0181b4c4b0ad5522131a45a0f067997bd0a"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-8v3zs",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-8v3zs",
+                "uid": "fc91106e-1b98-11e7-968b-1278d835e798",
+                "resourceVersion": "167694",
+                "creationTimestamp": "2017-04-07T13:49:14Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"165680\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-122.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:49:14Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:53Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:49:14Z"
+                    }
+                ],
+                "hostIP": "192.168.213.122",
+                "podIP": "10.2.8.201",
+                "startTime": "2017-04-07T13:49:14Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:56:53Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://2556e123a3e9334385e977eb07178001eb27d6265eeeb43b1b6f866f70adca4e"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-m2cxq",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-m2cxq",
+                "uid": "16555cbf-1b9a-11e7-968b-1278d835e798",
+                "resourceVersion": "167816",
+                "creationTimestamp": "2017-04-07T13:57:07Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167764\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-45.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:07Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:13Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:07Z"
+                    }
+                ],
+                "hostIP": "192.168.213.45",
+                "podIP": "10.2.220.201",
+                "startTime": "2017-04-07T13:57:07Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:57:12Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://a6a87b3747ef5516c5ddc1edc7ca9014f4b82d85277bfa2d0ede907b54f76321"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-mppn0",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-mppn0",
+                "uid": "1b2c8f79-1b9a-11e7-968b-1278d835e798",
+                "resourceVersion": "167848",
+                "creationTimestamp": "2017-04-07T13:57:15Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167817\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-45.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:15Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:17Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:57:15Z"
+                    }
+                ],
+                "hostIP": "192.168.213.45",
+                "podIP": "10.2.220.202",
+                "startTime": "2017-04-07T13:57:15Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:57:16Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://44cc99ad471dca2dd5bc2bb52593c94928d0178b52f6ff256d578fb00d733a19"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-mzb4z",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-mzb4z",
+                "uid": "fce13726-1b99-11e7-968b-1278d835e798",
+                "resourceVersion": "167727",
+                "creationTimestamp": "2017-04-07T13:56:24Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167523\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-72.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:24Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:57Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:24Z"
+                    }
+                ],
+                "hostIP": "192.168.213.72",
+                "podIP": "10.2.230.140",
+                "startTime": "2017-04-07T13:56:24Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:56:56Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://02e40862a2e48a7acc5328dc8af57077f419d485c35fbe15cc7cf74e7764ed36"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-prq9q",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-prq9q",
+                "uid": "f51a2b6e-1b99-11e7-968b-1278d835e798",
+                "resourceVersion": "167713",
+                "creationTimestamp": "2017-04-07T13:56:11Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"165709\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-49.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:11Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:55Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:11Z"
+                    }
+                ],
+                "hostIP": "192.168.213.49",
+                "podIP": "10.2.114.137",
+                "startTime": "2017-04-07T13:56:11Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:56:54Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://7daf29dbc026ee45d0a9e0e5767661685e38e47b92206312669ea57758c5e958"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "locust-worker-v509s",
+                "generateName": "locust-worker-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/locust-worker-v509s",
+                "uid": "0a94346b-1b9a-11e7-968b-1278d835e798",
+                "resourceVersion": "167715",
+                "creationTimestamp": "2017-04-07T13:56:47Z",
+                "labels": {
+                    "name": "locust",
+                    "role": "worker"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"default\",\"name\":\"locust-worker\",\"uid\":\"fc8edf7a-1b98-11e7-968b-1278d835e798\",\"apiVersion\":\"v1\",\"resourceVersion\":\"167609\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "kind": "ReplicationController",
+                        "name": "locust-worker",
+                        "uid": "fc8edf7a-1b98-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "locust",
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "env": [
+                            {
+                                "name": "LOCUST_MODE",
+                                "value": "worker"
+                            },
+                            {
+                                "name": "LOCUST_MASTER",
+                                "value": "locust-master"
+                            },
+                            {
+                                "name": "TARGET_HOST",
+                                "value": "http://sample-app"
+                            }
+                        ],
+                        "resources": {},
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-49.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:47Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:55Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:56:47Z"
+                    }
+                ],
+                "hostIP": "192.168.213.49",
+                "podIP": "10.2.114.138",
+                "startTime": "2017-04-07T13:56:47Z",
+                "containerStatuses": [
+                    {
+                        "name": "locust",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:56:54Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/locust-tasks:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/locust-tasks@sha256:a3f022d3c063267becf31c42645304ae4945ecacdcec9d37e6d0855050c34001",
+                        "containerID": "docker://23d9ef3349cc5f32c06c49c153122b38ad726a8dae552d25946a74e4a8a4546b"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "sample-sample-app-1141497042-gcfqw",
+                "generateName": "sample-sample-app-1141497042-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/sample-sample-app-1141497042-gcfqw",
+                "uid": "22cc0df2-1b93-11e7-968b-1278d835e798",
+                "resourceVersion": "160710",
+                "creationTimestamp": "2017-04-07T13:07:21Z",
+                "labels": {
+                    "app": "sample-sample-app",
+                    "pod-template-hash": "1141497042"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"default\",\"name\":\"sample-sample-app-1141497042\",\"uid\":\"22c8812b-1b93-11e7-968b-1278d835e798\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"160629\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "extensions/v1beta1",
+                        "kind": "ReplicaSet",
+                        "name": "sample-sample-app-1141497042",
+                        "uid": "22c8812b-1b93-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "sample-app",
+                        "image": "quay.io/leopoldodonnell/sample-app:latest",
+                        "ports": [
+                            {
+                                "containerPort": 4567,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "livenessProbe": {
+                            "httpGet": {
+                                "path": "/",
+                                "port": 4567,
+                                "scheme": "HTTP"
+                            },
+                            "timeoutSeconds": 1,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "failureThreshold": 3
+                        },
+                        "readinessProbe": {
+                            "httpGet": {
+                                "path": "/",
+                                "port": 4567,
+                                "scheme": "HTTP"
+                            },
+                            "timeoutSeconds": 1,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "failureThreshold": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-72.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:07:21Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:07:41Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:07:21Z"
+                    }
+                ],
+                "hostIP": "192.168.213.72",
+                "podIP": "10.2.230.133",
+                "startTime": "2017-04-07T13:07:21Z",
+                "containerStatuses": [
+                    {
+                        "name": "sample-app",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:07:36Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/sample-app:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/sample-app@sha256:fec8df8f1f25d26d954f0b7c1e4601a002bc9d01ca0412413c975a581fffd610",
+                        "containerID": "docker://f0f871d404da001955a7ee72d485664e41a2fb7219f8ef2fa0b96a20cbb74b17"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Pod",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "sample-sample-app-1141497042-x8pfd",
+                "generateName": "sample-sample-app-1141497042-",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/pods/sample-sample-app-1141497042-x8pfd",
+                "uid": "22cb60a3-1b93-11e7-968b-1278d835e798",
+                "resourceVersion": "160681",
+                "creationTimestamp": "2017-04-07T13:07:21Z",
+                "labels": {
+                    "app": "sample-sample-app",
+                    "pod-template-hash": "1141497042"
+                },
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"default\",\"name\":\"sample-sample-app-1141497042\",\"uid\":\"22c8812b-1b93-11e7-968b-1278d835e798\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"160629\"}}\n"
+                },
+                "ownerReferences": [
+                    {
+                        "apiVersion": "extensions/v1beta1",
+                        "kind": "ReplicaSet",
+                        "name": "sample-sample-app-1141497042",
+                        "uid": "22c8812b-1b93-11e7-968b-1278d835e798",
+                        "controller": true
+                    }
+                ]
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "default-token-5k4sm",
+                        "secret": {
+                            "secretName": "default-token-5k4sm",
+                            "defaultMode": 420
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "sample-app",
+                        "image": "quay.io/leopoldodonnell/sample-app:latest",
+                        "ports": [
+                            {
+                                "containerPort": 4567,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "name": "default-token-5k4sm",
+                                "readOnly": true,
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+                            }
+                        ],
+                        "livenessProbe": {
+                            "httpGet": {
+                                "path": "/",
+                                "port": 4567,
+                                "scheme": "HTTP"
+                            },
+                            "timeoutSeconds": 1,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "failureThreshold": 3
+                        },
+                        "readinessProbe": {
+                            "httpGet": {
+                                "path": "/",
+                                "port": 4567,
+                                "scheme": "HTTP"
+                            },
+                            "timeoutSeconds": 1,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "failureThreshold": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "serviceAccountName": "default",
+                "serviceAccount": "default",
+                "nodeName": "ip-192-168-213-49.ec2.internal",
+                "securityContext": {}
+            },
+            "status": {
+                "phase": "Running",
+                "conditions": [
+                    {
+                        "type": "Initialized",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:07:21Z"
+                    },
+                    {
+                        "type": "Ready",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:07:31Z"
+                    },
+                    {
+                        "type": "PodScheduled",
+                        "status": "True",
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-04-07T13:07:21Z"
+                    }
+                ],
+                "hostIP": "192.168.213.49",
+                "podIP": "10.2.114.132",
+                "startTime": "2017-04-07T13:07:21Z",
+                "containerStatuses": [
+                    {
+                        "name": "sample-app",
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-04-07T13:07:28Z"
+                            }
+                        },
+                        "lastState": {},
+                        "ready": true,
+                        "restartCount": 0,
+                        "image": "quay.io/leopoldodonnell/sample-app:latest",
+                        "imageID": "docker-pullable://quay.io/leopoldodonnell/sample-app@sha256:fec8df8f1f25d26d954f0b7c1e4601a002bc9d01ca0412413c975a581fffd610",
+                        "containerID": "docker://03a92e3595ead4019104638187cd193080900ce74ce2ab1fcdc38df5211d355b"
+                    }
+                ]
+            }
+        }
+    ]
+}

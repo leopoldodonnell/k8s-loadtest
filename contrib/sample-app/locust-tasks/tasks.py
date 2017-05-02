@@ -25,7 +25,7 @@ class MetricsTaskSet(TaskSet):
     _checksum = ""
 
     def on_start(self):
-        with open('/locust-tasks/data.json') as data_file:
+        with open('data.json') as data_file:
             self._payload = data_file.read().encode('utf-8')
             self._checksum = hashlib.md5(self._payload).hexdigest()
             print(self._checksum)
