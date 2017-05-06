@@ -56,7 +56,7 @@ helm install contrib/sample-app/charts/sample-app --name sample-app
 **Step 3** Startup the load test with helm
 
 ```bash
-helm install charts/locust-loadtest -f contrib/sample-app/charts/sample-app/locust-values.yaml --name locust
+helm install charts/locust-loadtest -f contrib/sample-app/locust-values.yaml --name locust
 ```
 
 **Step 4** Verify that its all running and get the URI for `locust`
