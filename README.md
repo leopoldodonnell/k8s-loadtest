@@ -6,22 +6,23 @@ A simple load testing framework for Kubernetes workloads using locust.
 
 <p align='center'><img align="center" src="load-test.jpg" width="50%" height="50%"></p>
 
-Kubernetes enables the rapid deployment of server-based applications on top of elastic
-infrastructure that can scale with your needs. In important part of a rapid continuous
+Kubernetes enables rapid deployment of server-based applications on top of elastic
+infrastructure that can scale with your needs. An important part of a rapid continuous
 deployment strategy includes proof that your application can scale and remain stable under
-load. This project includes a re-usable container image build and a re-usable deployment
-configuration that will get you load-testing on your Kubernetes clusters in no time.
+load. This project includes a re-usable [locust](https://locust.io) container image Dockerfile
+and a re-usable deployment configuration using [Helm](https://github.com/kubernetes/helm) that 
+will get you load-testing on your Kubernetes clusters in no time.
 
-This load testing environment uses `locust`; a python based master/worker load testing tool.
-In a nutshell, you use a simple python library to define your loadtests and then launch the
-master and workers with the file containing the main entry point for your test.
+`locust` is a python based load testing tool that runs in a master/worker configuration. To setup
+your loadtest, you use a simple python library to define tests and then launch the master and 
+workers with the file containing the main entry point for your test.
 
 Please see the [Locust Home Page](http://locust.io/) for more information on creating and
 running your load tests.
 
 This framework simplifies the use of `locust` in kubernetes by offering a `helm` deployment
-that will get your loadtest out of your `git` repository and running it on a generic
-locust container.
+that will get a load test out of your `git` repository before running it on the generic
+locust container defined in this project's `Dockerfile`.
 
 ## Prerequisites
 
@@ -37,11 +38,8 @@ Next you'll need two other tools:
 
 ## Quickstart
 
-Once you've got your cluster started with `helm` and `kubectl` setup, you can familiar with this framework by using the
-supplied `sample-app` found in the contrib folder.
-
-http://locust.io/
-
+Once you've got your cluster started and have installed `helm` and `kubectl`, you can become familiar with this framework
+by using the supplied `sample-app` found in the `contrib/sample-app` folder.
 
 **Step 1:** Setup your git ssh key, so kubernetes call pull your loadtest
 
@@ -49,7 +47,7 @@ http://locust.io/
 kubectl create secret generic git-creds --from-file=ssh=~/.ssh/id_rsa
 ```
 
-**Step 2** Startup the simple server with helm
+**Step 2** Startup the sample server with helm
 
 ```bash
 helm install contrib/sample-app/charts/sample-app --name sample-app
