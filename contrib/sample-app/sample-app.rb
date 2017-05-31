@@ -5,7 +5,7 @@ require 'json'
 
 set :bind, '0.0.0.0'
 
-def decode(params)
+def decode(request)
   JSON.parse(request.body.read).symbolize_keys
 end
 
@@ -14,16 +14,16 @@ get '/' do
 end
 
 post '/login' do
-  "/login - device: #{decode(params)[:device]}"
+  "/login - device: #{decode(request)[:device]}"
 end
 
 post '/metrics' do
-  "/metrics - device: #{decode(params)[:device]}, timestamp: {} \n"
+  "/metrics - device: #{decode(request)[:device]}, timestamp: {} \n"
 end
 
 # Calculate the Nth prime number to use up CPU and time
 post '/nth_prime' do
-  Prime.first(decode(params)[:primes].to_i).last
+  Prime.first(decode(request)[:primes].to_i).last
 end
 
 post '/post_json' do
