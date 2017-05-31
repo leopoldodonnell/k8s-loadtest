@@ -14,6 +14,59 @@ spec:
         app: {{ template "fullname" . }}
         name: {{ template "fullname" . }}-master
         role: master
+      
+      annotations:
+        pod.beta.kubernetes.io/init-containers: '[
+          {
+            "name": "fix-perms",
+            "image": "busybox",
+            "imagePullPolicy": "{{ .Values.image.pullPolicy }}",
+            "command": [
+              "sh",
+              "-c",
+              "/bin/chmod 400 /etc/git-secret/ssh"
+            ],
+            "volumeMounts": [
+              {
+                "name": "git-secret",
+                "mountPath": "/etc/git-secret/ssh",
+                "subPath": "ssh"
+              }
+            ],
+            "securityContext": {
+              "runAsUser": 0
+            }
+          },
+          {
+            "name": "tasks",
+            "image": "{{.Values.image.gitSync}}",
+            "imagePullPolicy": "{{.Values.image.pullPolicy}}",
+            "args": [
+              "--repo",
+              "{{ .Values.task.repo }}",
+              "--dest",
+              "{{ .Values.task.dest }}",
+              "--branch",
+              "{{ .Values.task.branch }}",
+              "--ssh",
+              "--one-time"
+            ],
+            "volumeMounts": [
+              {
+                "mountPath": "/git/",
+                "name": "git-volume"
+              },
+              {
+                "name": "git-secret",
+                "mountPath": "/etc/git-secret/ssh",
+                "subPath": "ssh"
+              }
+            ],
+            "securityContext": {
+              "runAsUser": 0
+            }
+          }
+        ]'
     spec:
       volumes:
       - name: git-secret
@@ -23,40 +76,40 @@ spec:
       - name: git-volume
         emptyDir: {}
 
-      initContainers:
-      # Fix the ssh secrets permissions
-      - name: fix-perms
-        image: busybox
-        command:
-        - sh
-        - -c
-        - /bin/chmod 400 /etc/git-secret/ssh
-        volumeMounts:
-        - name: git-secret
-          mountPath: /etc/git-secret/ssh
-          subPath: ssh
-        securityContext:
-          runAsUser: 0
-
-      # Go get the tasks from git
-      - name: tasks
-        image: {{ .Values.image.gitSync }}
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        args: [
-          "--repo", "{{ .Values.task.repo }}", 
-          "--dest", "{{ .Values.task.dest }}",
-          "--branch", "{{ .Values.task.branch }}",
-          "--ssh",
-          "--one-time"
-        ]
-        volumeMounts:
-        - mountPath: /git/
-          name: git-volume
-        - name: git-secret
-          mountPath: /etc/git-secret/ssh
-          subPath: ssh
-        securityContext:
-          runAsUser: 0
+      # initContainers:
+      # # Fix the ssh secrets permissions
+      # - name: fix-perms
+      #   image: busybox
+      #   command:
+      #   - sh
+      #   - -c
+      #   - /bin/chmod 400 /etc/git-secret/ssh
+      #   volumeMounts:
+      #   - name: git-secret
+      #     mountPath: /etc/git-secret/ssh
+      #     subPath: ssh
+      #   securityContext:
+      #     runAsUser: 0
+      #
+      # # Go get the tasks from git
+      # - name: tasks
+      #   image: {{ .Values.image.gitSync }}
+      #   imagePullPolicy: {{ .Values.image.pullPolicy }}
+      #   args: [
+      #     "--repo", "{{ .Values.task.repo }}",
+      #     "--dest", "{{ .Values.task.dest }}",
+      #     "--branch", "{{ .Values.task.branch }}",
+      #     "--ssh",
+      #     "--one-time"
+      #   ]
+      #   volumeMounts:
+      #   - mountPath: /git/
+      #     name: git-volume
+      #   - name: git-secret
+      #     mountPath: /etc/git-secret/ssh
+      #     subPath: ssh
+      #   securityContext:
+      #     runAsUser: 0
 
       containers:
       - name: {{ .Chart.Name }}
