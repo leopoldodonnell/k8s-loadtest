@@ -14,16 +14,16 @@ get '/' do
 end
 
 post '/login' do
-  "/login - device: #{decode(request)['device']}"
+  "/login - device: #{params['device']}"
 end
 
 post '/metrics' do
-  "/metrics - device: #{decode(request)['device']}, timestamp: {} \n"
+  "/metrics - device: #{params['device']}, timestamp: {} \n"
 end
 
 # Calculate the Nth prime number to use up CPU and time
 post '/nth_prime' do
-  Prime.first(decode(request)['primes'].to_i).last.to_s
+  Prime.first(params['primes'].to_i).last.to_s
 end
 
 post '/post_json' do
