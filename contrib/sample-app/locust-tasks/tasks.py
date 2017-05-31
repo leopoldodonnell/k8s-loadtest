@@ -24,7 +24,7 @@ class MetricsTaskSet(TaskSet):
             print("got bad response")
         
     @task(10)
-    def post_primes(self)
+    def post_primes(self):
         response = self.client.post('/nth_prime', { 'primes': os.getenv('PRIMES', '800000') })
         print(response.text)
 
