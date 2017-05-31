@@ -23,7 +23,7 @@ end
 
 # Calculate the Nth prime number to use up CPU and time
 post '/nth_prime' do
-  Prime.first(decode(request)['primes'].to_i).last
+  Prime.first(decode(request)['primes'].to_i).last.to_s
 end
 
 post '/post_json' do
