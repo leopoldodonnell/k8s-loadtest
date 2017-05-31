@@ -10,7 +10,6 @@ from locust import HttpLocust, TaskSet, task
 class MetricsTaskSet(TaskSet):
     _payload = ""
     _checksum = ""
-    _primes = os.getenv('PRIMES', '800000')
 
     def on_start(self):
         with open('data.json') as data_file:
@@ -26,7 +25,7 @@ class MetricsTaskSet(TaskSet):
         
     @task(10)
     def post_primes(self)
-        response = self.client.post('/nth_prime', { 'primes': self._primes })
+        response = self.client.post('/nth_prime', { 'primes': os.getenv('PRIMES', '800000') })
         print(response.text)
 
 class MetricsLocust(HttpLocust):
