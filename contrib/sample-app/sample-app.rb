@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'digest'
+require 'prime'
 
 set :bind, '0.0.0.0'
 
@@ -13,6 +14,11 @@ end
 
 post '/metrics' do
   "/metrics - device: #{params['device']}, timestamp: {} \n"
+end
+
+# Calculate the Nth prime number to use up CPU and time
+post '/nth_prime' do
+  Prime.first(params['primes']).last
 end
 
 post '/post_json' do
