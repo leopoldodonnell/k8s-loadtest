@@ -18,7 +18,7 @@ end
 
 # Calculate the Nth prime number to use up CPU and time
 post '/nth_prime' do
-  Prime.first(params['primes']).last
+  Prime.first(params['primes'].to_i).last
 end
 
 post '/post_json' do
