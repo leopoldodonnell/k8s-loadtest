@@ -23,11 +23,19 @@ end
 
 # Calculate the Nth prime number to use up CPU and time
 post '/nth_prime' do
-  Prime.first(params['primes'].to_i).last.to_s
+  begin
+    Prime.first(params['primes'].to_i).last.to_s
+  rescue
+    '1'
+  end
 end
 
 post '/post_json' do
-  data = params['data']
-  Digest::MD5.hexdigest data
+  begin
+    data = params['data']
+    Digest::MD5.hexdigest data
+  rescue
+    Digest::MD5.hexdigest "hello world"
+  end    
 end
   
